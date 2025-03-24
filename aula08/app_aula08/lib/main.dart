@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: Home()
   ));
 }
@@ -33,12 +34,16 @@ class Home extends StatelessWidget {
       
     ),
 
-    body: Container(
-      width: 200,height: 200,
-      color:Colors.blue ,
-      child: Text("Aplicativo Mobile",
-      style: TextStyle(fontSize: 20),),
-      ),
+    body: Center(
+      child: Container(
+        width: 200,height: 200,
+        color:Colors.blue ,
+        child: Text("Aplicativo Mobile",
+        //centraliza o texto do container
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 20),),
+        ),
+    ),
     );
   }
 }
