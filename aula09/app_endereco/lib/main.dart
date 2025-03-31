@@ -35,13 +35,17 @@ class Campotexto extends StatefulWidget {
 
 class _CampotextoState extends State<Campotexto> {
   // declara variavel do tipo TextEdittingController
+  TextEditingController nome = TextEditingController();
   TextEditingController endereco = TextEditingController();
   TextEditingController cidade = TextEditingController();
+  TextEditingController estado = TextEditingController();
   TextEditingController numero = TextEditingController();
   _limpar(){
     setState(() {
+      nome.text="";
       endereco.text="";
       cidade.text="";
+      estado.text="";
       numero.text ="";
     });
   }
@@ -54,7 +58,18 @@ class _CampotextoState extends State<Campotexto> {
      children: [
       // Textfield permite que o usuario insira informações
       TextField(
-        keyboardType: TextInputType.emailAddress,
+        keyboardType: TextInputType.name,
+        decoration: InputDecoration(
+          labelText: "Digite seu nome"
+        ),
+       /* onChanged: (String texto){
+          print("O texto digitado pelo usuario foi ${texto}");
+        },*/
+        controller: nome,
+      ),
+
+      TextField(
+        keyboardType: TextInputType.name,
         decoration: InputDecoration(
           labelText: "Digite seu endereço"
         ),
@@ -76,6 +91,17 @@ class _CampotextoState extends State<Campotexto> {
           },*/
           controller: cidade,
         ),
+      ),
+
+      TextField(
+        keyboardType: TextInputType.name,
+        decoration: InputDecoration(
+          labelText: "Digite seu estado"
+        ),
+       /* onChanged: (String texto){
+          print("O texto digitado pelo usuario foi ${texto}");
+        },*/
+        controller: estado,
       ),
       
      TextField(
@@ -101,11 +127,16 @@ class _CampotextoState extends State<Campotexto> {
         children: [
          ElevatedButton(
         onPressed: (){
+          print("Nome: ${nome.text}");
           print("Endereço: ${endereco.text}");
           print("Cidade: ${cidade.text}");
+          print("Estado: ${estado.text}");
+          print("Número: ${numero.text}");
           setState(() {
+            nome.text;
             endereco.text; 
             cidade.text;
+            estado.text;
             numero.text;
 
           });
@@ -117,15 +148,27 @@ class _CampotextoState extends State<Campotexto> {
         ],
       ),
       Container(width: 300,height: 50,
+      color: Colors.blue,child: Text("${nome.text}",
+      textAlign:TextAlign.center ,
+      style: TextStyle(fontSize: 18),),
+      ),
+
+      Container(width: 300,height: 50,
       color: Colors.blue,child: Text("${endereco.text}",
       textAlign:TextAlign.center ,
+      style: TextStyle(fontSize: 18),),
+      ),
+
+      Container(width: 300,height: 50,
+      color: Colors.blue,child: Text("${cidade.text} - ${estado.text}",
+      textAlign: TextAlign.center,
       
       style: TextStyle(fontSize: 18),),
       ),
+
       Container(width: 300,height: 50,
-      color: Colors.blue,child: Text("${cidade.text} - ${numero.text}",
-      textAlign: TextAlign.center,
-      
+      color: Colors.blue,child: Text("${numero.text}",
+      textAlign:TextAlign.center ,
       style: TextStyle(fontSize: 18),),
       ),
      ],
