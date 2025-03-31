@@ -17,7 +17,7 @@ class Telaprincipal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("App aula 09 - Campo texto"),
+        title: Text("App aula 09 - Exercicio Endereço"),
         backgroundColor: Colors.blue,
       ),
       body: Campotexto() ,
@@ -35,14 +35,14 @@ class Campotexto extends StatefulWidget {
 
 class _CampotextoState extends State<Campotexto> {
   // declara variavel do tipo TextEdittingController
-  TextEditingController email = TextEditingController();
-  TextEditingController nome = TextEditingController();
-  TextEditingController idade = TextEditingController();
+  TextEditingController endereco = TextEditingController();
+  TextEditingController cidade = TextEditingController();
+  TextEditingController numero = TextEditingController();
   _limpar(){
     setState(() {
-      email.text="";
-      nome.text="";
-      idade.text ="";
+      endereco.text="";
+      cidade.text="";
+      numero.text ="";
     });
   }
   @override
@@ -56,12 +56,12 @@ class _CampotextoState extends State<Campotexto> {
       TextField(
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-          labelText: "Digite seu email"
+          labelText: "Digite seu endereço"
         ),
        /* onChanged: (String texto){
           print("O texto digitado pelo usuario foi ${texto}");
         },*/
-        controller: email,
+        controller: endereco,
       ),
 
       Padding(
@@ -69,12 +69,12 @@ class _CampotextoState extends State<Campotexto> {
         child: TextField(
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
-            hintText: "Digite seu nome"
+            hintText: "Digite sua cidade"
           ),
           /*onSubmitted: (String texto){
             print("Texto digitado pelo usuario: ${texto}");
           },*/
-          controller: nome,
+          controller: cidade,
         ),
       ),
       
@@ -82,14 +82,14 @@ class _CampotextoState extends State<Campotexto> {
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       decoration: InputDecoration(
-        labelText: "Digite sua idade",
+        labelText: "Digite o número",
         // border parametro que permite estilizar o widget textfield
         border: OutlineInputBorder(
           borderRadius:// BorderRadius.circular(8)
           BorderRadius.circular(8),
         )
       ),
-      controller: idade,
+      controller: numero,
     
      ),
 
@@ -101,12 +101,12 @@ class _CampotextoState extends State<Campotexto> {
         children: [
          ElevatedButton(
         onPressed: (){
-          print("Email ${email.text}");
-          print("Nome: ${nome.text}");
+          print("Endereço: ${endereco.text}");
+          print("Cidade: ${cidade.text}");
           setState(() {
-            email.text; 
-            nome.text;
-            idade.text;
+            endereco.text; 
+            cidade.text;
+            numero.text;
 
           });
 
@@ -117,13 +117,13 @@ class _CampotextoState extends State<Campotexto> {
         ],
       ),
       Container(width: 300,height: 50,
-      color: Colors.blue,child: Text("${email.text}",
+      color: Colors.blue,child: Text("${endereco.text}",
       textAlign:TextAlign.center ,
       
       style: TextStyle(fontSize: 18),),
       ),
       Container(width: 300,height: 50,
-      color: Colors.blue,child: Text("${nome.text} - ${idade.text}",
+      color: Colors.blue,child: Text("${cidade.text} - ${numero.text}",
       textAlign: TextAlign.center,
       
       style: TextStyle(fontSize: 18),),
