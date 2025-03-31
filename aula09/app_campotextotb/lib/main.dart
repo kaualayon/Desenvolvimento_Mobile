@@ -72,15 +72,39 @@ class _CampotextoState extends State<Campotexto> {
       ),
 
       // cria um botao para ao ser pressionado exibir no terminal o que o usuario digita
-      ElevatedButton(
+      
+      // Cria uma Row para permitir colocar um botao do lado do outro
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+         ElevatedButton(
         onPressed: (){
           print("Email ${email.text}");
           print("Nome: ${nome.text}");
+          setState(() {
+            email.text; 
+            nome.text;
+
+          });
 
         }, child: Text(
         "Exibir"
         ),),
       ElevatedButton(onPressed: _limpar, child: Text("Limpar")),
+        ],
+      ),
+      Container(width: 300,height: 50,
+      color: Colors.blue,child: Text("${email.text}",
+      textAlign:TextAlign.center ,
+      
+      style: TextStyle(fontSize: 18),),
+      ),
+      Container(width: 300,height: 50,
+      color: Colors.blue,child: Text("${nome.text}",
+      textAlign: TextAlign.center,
+      
+      style: TextStyle(fontSize: 18),),
+      ),
      ],
     );
   }
