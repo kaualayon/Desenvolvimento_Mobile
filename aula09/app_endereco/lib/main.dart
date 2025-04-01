@@ -18,7 +18,7 @@ class Telaprincipal extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("App aula 09 - Exercicio Endereço"),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromARGB(255, 9, 231, 194),
       ),
       body: Campotexto() ,
     );
@@ -148,26 +148,26 @@ class _CampotextoState extends State<Campotexto> {
         ],
       ),
       Container(width: 300,height: 50,
-      color: Colors.blue,child: Text("${nome.text}",
+      color: const Color.fromARGB(255, 118, 240, 240),child: Text("${nome.text}",
       textAlign:TextAlign.center ,
       style: TextStyle(fontSize: 18),),
       ),
 
       Container(width: 300,height: 50,
-      color: Colors.blue,child: Text("${endereco.text}",
+      color: const Color.fromARGB(255, 118, 240, 240),child: Text("${endereco.text}",
       textAlign:TextAlign.center ,
       style: TextStyle(fontSize: 18),),
       ),
 
       Container(width: 300,height: 50,
-      color: Colors.blue,child: Text("${cidade.text} - ${estado.text}",
+      color: const Color.fromARGB(255, 118, 240, 240),child: Text("${cidade.text} - ${estado.text}",
       textAlign: TextAlign.center,
       
       style: TextStyle(fontSize: 18),),
       ),
 
       Container(width: 300,height: 50,
-      color: Colors.blue,child: Text("${numero.text}",
+      color: const Color.fromARGB(255, 118, 240, 240),child: Text("${numero.text}",
       textAlign:TextAlign.center ,
       style: TextStyle(fontSize: 18),),
       ),
