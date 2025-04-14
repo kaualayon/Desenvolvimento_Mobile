@@ -1,5 +1,6 @@
 import 'package:appaula11/screen/tela1.dart';
 import 'package:appaula11/screen/tela2.dart';
+import 'package:appaula11/screen/tela3.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -45,7 +46,8 @@ class _NavScreenState extends State<NavScreen> {
       Home(),
       CheckBoxExample(),
       //Text('Index 1: School',style: optionStyle,),
-      Text('Index 2: Business',style: optionStyle,)
+      //Text('Index 2: Business',style: optionStyle,)
+      RadioButtomExample(),
     ];
 
 
