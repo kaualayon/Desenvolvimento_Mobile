@@ -2,54 +2,52 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert'; // pacote utilizado para converter json
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Cadastrousuario extends StatefulWidget {
+  const Cadastrousuario({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Cadastrousuario> createState() => _CadastrousuarioState();
 }
 
-class _LoginState extends State<Login> {
+class _CadastrousuarioState extends State<Cadastrousuario> {
   // variaveis para realizar o login
-  TextEditingController user = TextEditingController();
-  TextEditingController senha = TextEditingController();
+  TextEditingController user_n = TextEditingController();
+  TextEditingController senha_n = TextEditingController();
   // variavel para exibir ou ocultar a senha
   bool exibir = false;
   // função para realizar o login
-  _verificaLogin()async{
+  _cadastrausuario()async{
     // Cria variavel flag para quando encontrar o login
     bool encuser = false;
     // url com o endpoint dos usuarios da api
     String url = "http://10.109.83.10:3000/usuarios";
+
+    // Cria o dado para fazer o post na api para cadastrar o usuario
+    Map<String,dynamic> mensagem={
+      "id":user_n.text,
+      "login":user_n.text,
+      "senha":senha_n.text
+    };
     // Variavel para armazenar a resposta da api
     http.Response resposta = await http.get(Uri.parse(url));
-    List clientes =<Users>[]; // cria uma lista para armazenar os usuarios cadastrados
-    print(resposta.statusCode); // codigo de retorno api
-    // cria uma variavel dados
-    var dados = json.decode(resposta.body) as List; // armazena o dado na forma de lista
-    print("${dados[0]["login"]}  ${dados[0]["senha"]}");
-    for(int i=0;i<dados.length;i++){
-      print("${dados[i]["login"]}  ${dados[i]["senha"]}");
-      if(user.text==dados[i]["login"]&&senha.text==dados[i]["senha"]){
-        encuser = true;
-        break;
-      }
-    }
-    if(encuser==true){
-      print("Usuario ${user.text} encontrado");
-      encuser=false;
-      // vai para outra tela
-      user.text="";
-      senha.text="";
-    }
-    else{
-      print("Usuario ${user.text} nao encontrado");
-    }
+    // metodo http.post
+    http.post(Uri.parse(url),
+    headers: <String,String>{
+      'Content-type':'application/json; charset=UTF-8',
+    },body: jsonEncode(mensagem));
+   
+   print("Usuario cadastrado");
+   user_n.text="";
+   senha_n.text="";
 
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Cadastrar usuario"),
+        backgroundColor: Colors.red,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +69,7 @@ class _LoginState extends State<Login> {
                       icon: Icon(Icons.people_alt_outlined,color: Colors.red,),
                       hintText: "Digite seu nome"
                     ),
-                    controller: user,
+                    controller: user_n,
                   ),
                 ),
                 TextFormField(
@@ -93,13 +91,11 @@ class _LoginState extends State<Login> {
                   ),
                   obscureText: exibir,
                   obscuringCharacter: '*',
-                  controller: senha,
+                  controller: senha_n,
                   
                 ),
-                ElevatedButton(onPressed: _verificaLogin, child: Text("Entrar")),
-                ElevatedButton(onPressed: (){
-
-                }, child: Text("Cadastrar"))
+                ElevatedButton(onPressed: _cadastrausuario, child: Text("Cadastrar")),
+                
               ],
             ),
            )
@@ -110,23 +106,3 @@ class _LoginState extends State<Login> {
   }
 }
 
-// Cria classe chamada Users
-class Users{
-  String id;
-  String login;
-  String senha;
-  // cria o construtor
-  Users(this.id,this.login,this.senha);
-
-  // metodo para acessar os usuarios
-  factory Users.fromJson(Map<String,dynamic>json){
-    return Users(json["id"], json["login"], json["senha"]);
-  }
-}
-/*
-Users{
-  json["id"]:0,
-  json["login"]:"senai",
-  json["senha"]:"senha"
-}
-*/
